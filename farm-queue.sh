@@ -13,8 +13,9 @@
 # activate your desired conda environment
 conda activate assembly
 
-# go to the directory you ran 'sbatch' in
-cd $SLURM_SUBMIT_DIR
+# go to the directory you ran 'sbatch' in, OR just hardcode it...
+#cd $SLURM_SUBMIT_DIR
+cd ~/assembly-repo
 
 # fail on weird errors
 set -o nounset

@@ -40,4 +40,4 @@ rule annotate_contigs:
     shell:
         # note: a bug in prokka+megahit means we have to force success.
         # that's what "|| :" does.
-        "prokka --outdir {output} --prefix {wildcards.prefix} {input} || :"
+        "prokka --outdir {output} --prefix {wildcards.prefix} {input} --cpus {threads} || :"

@@ -23,7 +23,7 @@ set -o errexit
 set -x
 
 # run the snakemake!
-snakemake -p -n
+snakemake -p -j 8 -n
 
 # print out various information about the job
 env | grep SLURM            # Print out values of the current jobs SLURM environment variables

@@ -1,0 +1,7 @@
+*~
+.snakemake/
+SRR2584857_1.fastq.gz
+SRR2584857_2.fastq.gz
+rel606.annot/
+rel606.contigs.fa
+rel606.megahit.out/

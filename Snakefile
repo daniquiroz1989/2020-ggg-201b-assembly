@@ -1,8 +1,7 @@
 rule all:
     input:
         "rel606.annot",
-        "rel606.quast",
-        "rel606.100000.quast"
+        "rel606.quast"
 
 # copy in the relevant data
 rule link_data:
@@ -52,12 +51,13 @@ rule annotate_contigs:
 rule quast_eval:
     input:
         "{prefix}.contigs.fa"
-    conda: "env-quast.yml"
+    conda: "env-quast.yml"      # note, you need to run this with --use-conda!
     output:
         directory("{prefix}.quast")
     shell: "quast {input} -o {output}"
 
 ### these rules produce assemblies from subsampled read sets
+### they are part of HW #2
 
 rule subsample_reads:
     input: "{name}.fastq.gz"

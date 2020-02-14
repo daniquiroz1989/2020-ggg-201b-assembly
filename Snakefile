@@ -1,6 +1,7 @@
 rule all:
     input:
-        "rel606.annot"
+        "rel606.annot",
+        "rel606.quast"
 
 rule link_data:
     input:
@@ -41,3 +42,11 @@ rule annotate_contigs:
         # note: a bug in prokka+megahit means we have to force success.
         # that's what "|| :" does.
         "prokka --outdir {output} --prefix {wildcards.prefix} {input} --cpus {threads} || :"
+
+rule quast_eval:
+    input:
+        "{prefix}.contigs.fa"
+    conda: "env-quast.yml"
+    output:
+        directory("{prefix}.quast")
+    shell: "quast {input} -o {output}"

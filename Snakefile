@@ -1,7 +1,9 @@
+SAMPLES = ['20000','40000', '100000', '400000', '1000000', '2000000']
 rule all:
     input:
         "rel606.annot",
-        "rel606.quast"
+        "rel606.quast",
+        expand("rel606.{name}.quast", name=SAMPLES)
 
 # copy in the relevant data
 rule link_data:
@@ -21,10 +23,10 @@ rule assemble_data:
         directory("rel606.megahit.out")
     threads: 8
     params:
-        ram="5e9",
+        ram = "5e9"
     shell:
         """megahit -1 {input.r1} -2 {input.r2} -o {output} -f -t {threads} \
-               -m {params.ram}"""
+             -m {params.ram}"""
 
 # copy the final.contigs.fa file out of the megahit assembly directory
 rule copy_genome_contigs:

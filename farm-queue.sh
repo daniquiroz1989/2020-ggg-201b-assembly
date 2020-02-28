@@ -4,7 +4,7 @@
 #SBATCH -N 1                   # one "node", or computer
 #SBATCH -n 1                   # one task for this node
 #SBATCH -c 8                   # eight cores per task
-#SBATCH -t 0:30:00             # ask for no more than 30 minutes
+#SBATCH -t 1:00:00             # ask for no more than 30 minutes
 #SBATCH --mem=10gb             # ask for no more than 10 GB of memory
 
 # initialize conda
@@ -15,7 +15,7 @@ conda activate assembly
 
 # go to the directory you ran 'sbatch' in, OR just hardcode it...
 #cd $SLURM_SUBMIT_DIR
-cd ~/assembly-repo
+cd ~/201b-lab-hw2/
 
 # fail on weird errors
 set -o nounset
@@ -23,7 +23,7 @@ set -o errexit
 set -x
 
 # run the snakemake!
-snakemake -p -j 8 --use-conda -n
+snakemake -p -j 8 --use-conda
 
 # print out various information about the job
 env | grep SLURM            # Print out values of the current jobs SLURM environment variables
